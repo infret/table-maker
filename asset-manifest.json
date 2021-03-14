@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/table-maker/static/js/main.759353f6.chunk.js",
+    "main.js.map": "/table-maker/static/js/main.759353f6.chunk.js.map",
+    "runtime-main.js": "/table-maker/static/js/runtime-main.bc6719eb.js",
+    "runtime-main.js.map": "/table-maker/static/js/runtime-main.bc6719eb.js.map",
+    "static/js/2.f281f69f.chunk.js": "/table-maker/static/js/2.f281f69f.chunk.js",
+    "static/js/2.f281f69f.chunk.js.map": "/table-maker/static/js/2.f281f69f.chunk.js.map",
+    "index.html": "/table-maker/index.html",
+    "static/js/2.f281f69f.chunk.js.LICENSE.txt": "/table-maker/static/js/2.f281f69f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bc6719eb.js",
+    "static/js/2.f281f69f.chunk.js",
+    "static/js/main.759353f6.chunk.js"
+  ]
+}
