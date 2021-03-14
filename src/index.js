@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 /* Компонент для построения таблицы с дополнительными возможностями для пользователя.
@@ -8,127 +8,22 @@ import ReactDOM from 'react-dom'
 4. Текстовое поле скрывает несовпадающие со своим содержимым поля, перефильтрация осуществляется на каждое изменение значения поля.
 */
 
-const Table = ({ page, filter }) => {
-  const [sort, setSort] = useState('asc')
-
-  function handleSort() {
-    sort === 'desc' ? setSort('asc') : setSort('desc')
-  }
-
-  useEffect(() => {
-    if (sort === 'desc') {
-      page = page.reverse()
-    }
-  }, [sort])
-
-  return (
-    <table border='1' style={{ borderCollapse: 'collapse', margin: '20px 0' }}>
-      <thead style={{ height: '40px', position: 'relative' }}>
-        <div
-          style={{
-            position: 'absolute',
-            background: 'transparent',
-            height: '100%',
-            width: '100%',
-            zIndex: 100
-          }}
-          onClick={handleSort}
-        ></div>
-        <tr>
-          <th scope='col'>A</th>
-          <th scope='col'>B</th>
-          <th scope='col'>C</th>
-          <th scope='col'>D</th>
-          <th scope='col'>E</th>
-          <th scope='col'>F</th>
-          <th scope='col'>G</th>
-          <th scope='col'>H</th>
-          <th scope='col'>I</th>
-          <th scope='col'>J</th>
-        </tr>
-      </thead>
-      <tbody>
-        {page.map((chunk, index) => (
-          <tr key={index}>
-            {chunk.map((data, i) => (
-              <td
-                style={{
-                  fontSize: '18px',
-                  overflow: 'auto',
-                  width: '60px',
-                  height: '40px',
-                  padding: '0 9px',
-                  boxSizing: 'border-box'
-                }}
-                key={i}
-              >
-                {filter ? (data.toString().includes(filter) ? data : '') : data}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  )
-}
-
 const App = () => {
   const [filter, setFilter] = useState('')
   const [currentPage, setPage] = useState(1)
 
-  let data = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
-    25,
-    26,
-    27,
-    28,
-    29,
-    30,
-    31,
-    32,
-    33,
-    34,
-    35,
-    36,
-    37,
-    38,
-    39,
-    40,
-    41,
-    42,
-    43,
-    44,
-    45,
-    46,
-    47,
-    48,
-    49,
-    50,
-    51
-  ]
+  // prettier-ignore
+  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 
+    10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+    20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+    30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+    40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+    50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
+    60, 61, 62, 63, 64, 65, 66, 67, 68, 69,
+    70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
+    80, 81, 82, 83, 84, 85, 86, 87, 88, 89,
+    90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
+     100, 101, 102]
 
   function getChunks(arr, size) {
     var tempArray = []
@@ -145,6 +40,7 @@ const App = () => {
 
   return (
     <div style={{ margin: 'auto', width: '600px', height: '500px', fontFamily: 'sans-serif' }}>
+      <h2>Табличное представление данных, их пагинация, фильтрация и сортировка без хардкода</h2>
       <form style={{ width: '100%' }}>
         <label htmlFor='filter'>Фильтрация:</label>
         <input
@@ -188,6 +84,64 @@ const App = () => {
     </div>
   )
 }
+
+const Table = ({ page, filter }) => {
+  const [sort, setSort] = useState('asc')
+
+  function handleSort() {
+    sort === 'desc' ? setSort('asc') : setSort('desc')
+    page = page.reverse()
+  }
+
+  return (
+    <table border='1' style={{ borderCollapse: 'collapse', border: 'none', margin: '20px 0' }}>
+      <thead onClick={handleSort}>
+        <tr>
+          {page[0].map((td, index) => (
+            <th
+              scope='col'
+              style={{
+                fontSize: '18px',
+                width: '60px',
+                height: '40px',
+                padding: '0 9px',
+                boxSizing: 'border-box',
+                textAlign: 'center',
+                border: '2px solid gainsboro'
+              }}
+            >
+              {String.fromCharCode(65 + index).toUpperCase()}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {page.map((chunk, index) => (
+          <tr key={index}>
+            {chunk.map((data, i) => (
+              <td
+                style={{
+                  fontSize: '18px',
+                  overflow: 'auto',
+                  width: '60px',
+                  height: '40px',
+                  padding: '0 9px',
+                  boxSizing: 'border-box',
+                  textAlign: 'center',
+                  border: '2px solid gainsboro'
+                }}
+                key={i}
+              >
+                {filter ? (data.toString().includes(filter) ? data : '') : data}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
