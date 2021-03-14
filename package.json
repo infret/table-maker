@@ -1,6 +1,6 @@
 {
   "private": true,
-  "homepage": "http://infret.github.io/",
+  "homepage": "https://pechkin.dev/table-maker",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
